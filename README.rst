@@ -1,6 +1,13 @@
 ============
 tinyformat.h
 ============
+
+----------------------------------------
+Changes in this fork
+----------------------------------------
+This is a fork of tinyformat by Chris Foster where all C++98-specific workarounds have
+been removed for an even tinier implementation. The original documentation follows below.
+
 ----------------------------------------
 A minimal type safe printf() replacement
 ----------------------------------------
