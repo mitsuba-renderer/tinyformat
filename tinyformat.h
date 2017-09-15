@@ -131,6 +131,14 @@ namespace tfm = tinyformat;
 #   define TINYFORMAT_HIDDEN
 #endif
 
+#if defined(__clang__)
+#  define TINYFORMAT_FALLTHROUGH [[clang::fallthrough]];
+#elif defined(__GNUG__)
+#  define TINYFORMAT_FALLTHROUGH __attribute__ ((fallthrough));
+#else
+#  define TINYFORMAT_FALLTHROUGH
+#endif
+
 namespace tinyformat {
 
 //------------------------------------------------------------------------------
@@ -529,23 +537,27 @@ inline const char* streamStateFromFormat(std::ostream& out, bool& spacePadPositi
             break;
         case 'X':
             out.setf(std::ios::uppercase);
+            TINYFORMAT_FALLTHROUGH
         case 'x': case 'p':
             out.setf(std::ios::hex, std::ios::basefield);
             intConversion = true;
             break;
         case 'E':
             out.setf(std::ios::uppercase);
+            TINYFORMAT_FALLTHROUGH
         case 'e':
             out.setf(std::ios::scientific, std::ios::floatfield);
             out.setf(std::ios::dec, std::ios::basefield);
             break;
         case 'F':
             out.setf(std::ios::uppercase);
+            TINYFORMAT_FALLTHROUGH
         case 'f':
             out.setf(std::ios::fixed, std::ios::floatfield);
             break;
         case 'G':
             out.setf(std::ios::uppercase);
+            TINYFORMAT_FALLTHROUGH
         case 'g':
             out.setf(std::ios::dec, std::ios::basefield);
             // As in boost::format, let stream decide float format.
