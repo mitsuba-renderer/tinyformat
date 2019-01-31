@@ -133,7 +133,7 @@ namespace tfm = tinyformat;
 
 #if defined(__clang__)
 #  define TINYFORMAT_FALLTHROUGH [[clang::fallthrough]];
-#elif defined(__GNUG__)
+#elif defined(__GNUG__) && __GNUC__ >= 7
 #  define TINYFORMAT_FALLTHROUGH __attribute__ ((fallthrough));
 #else
 #  define TINYFORMAT_FALLTHROUGH
